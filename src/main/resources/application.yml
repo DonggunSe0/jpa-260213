@@ -4,3 +4,9 @@ server:
 spring:
   application:
     name: demo
+
+  datasource:
+    url: jdbc:h2:./db_dev;MODE=MySQL # H2 DB 접속 주소: 프로젝트(실행 경로) 기준 ./db_dev 파일로 저장 + MySQL 문법 모드
+    username: sa # DB 접속 계정명(H2 기본 계정이 보통 sa)
+    password:
+    driver-class-name: org.h2.Driver # 어떤 DB 드라이버를 쓸지 지정(H2 JDBC 드라이버)

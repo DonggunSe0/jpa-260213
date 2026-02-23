@@ -17,16 +17,31 @@ public class BaseInitData {
     ApplicationRunner initDataRunner() {
         return args -> {
             // 초기 데이터 설정
-            postRepository.count(); // select count(*) from post;
-
-            Post post1 = new Post("제목1", "내용1");
-
-            postRepository.save(post1); //jpaRepository에서 jpa가 구현해줌
-            // insert into post (title, content) values ("제목1", "내용1");
-            postRepository.findById(1); // select * from post where id = 1;
+            work1();
+            work2();
 
 
         };
     }
+
+    void work1(){
+
+        //sample data가 이미 존재하면 초기 데이터를 넣지 않음
+        if(postRepository.count() > 0) {
+            return;
+        }
+        //영속성
+        Post post1 = new Post("제목1", "내용1");
+        //비즈니스 로직
+        postRepository.save(post1); //jpaRepository에서 jpa가 구현해줌
+
+        Post post2 = new Post("제목2", "내용2");
+        //비즈니스 로직
+        postRepository.save(post2);
+    };
+
+    void work2(){
+        postRepository.findById(1); // select * from post where id = 1;
+    };
 
 }
